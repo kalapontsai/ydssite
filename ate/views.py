@@ -6,6 +6,7 @@ from django import template
 from .models import Lottitle,Testdata,Testresult,Testunit
 
 def index(request):
+	#'ateindex.html'
     return render(request, 'ateindex.html')
 
 def test_item_list(request):
@@ -26,8 +27,8 @@ def device_yield(request):
 	else:
 		device = devices[0]
 
-	yield_array = []
-	lots = Lottitle.objects.values('lotdt_idx').filter(device=device)
+	arr = []
+	lots = Lottitle.objects.values('lotdt_idx','lotname').filter(device=device)
 	for lot in lots :
 		tmp_yields = Testdata.objects.values('t_result').filter(lotdt_idx=lot['lotdt_idx'])
 		total = 0
@@ -37,7 +38,39 @@ def device_yield(request):
 			if tmp_yield['t_result'] == 1 :
 				good += 1
 		yield_cal = round (good * 100 / total , 2)
-		yield_array.append([device,lot['lotdt_idx'],total,good,yield_cal])
+		#data = { 'lotname':lot['lotname'],'total':total, 'good':good, 'yield_cal':yield_cal}
+		arr.append({ 'lotname':lot['lotname'],'total':total, 'good':good, 'yield_cal':yield_cal})
+
+
+
+	return render(request, 'device_yield.html', {'devices': devices,'device': device, 'arr':arr})
+
+def device_yield1(request):
+	#distinct = Lottitle.objects.values('device').annotate(device_count=Count('device')).filter(device_count=1)
+	#t_row = User.objects.filter(device__in=[item['device'] for item in distinct])
+	devices = []
+	rows = Lottitle.objects.values('device').distinct()
+	### 把queryset轉成list ###
+	for de in rows:
+		devices.append(de['device']) #device[0]['device']
+
+	if 'device' in request.POST:
+		device = str(request.POST['device'])
+	else:
+		device = devices[0]
+
+	yield_array = []
+	lots = Lottitle.objects.values('lotdt_idx','lotname').filter(device=device)
+	for lot in lots :
+		tmp_yields = Testdata.objects.values('t_result').filter(lotdt_idx=lot['lotdt_idx'])
+		total = 0
+		good = 0
+		for tmp_yield in tmp_yields :
+			total += 1
+			if tmp_yield['t_result'] == 1 :
+				good += 1
+		yield_cal = round (good * 100 / total , 2)
+		yield_array.append([device,lot['lotname'],total,good,yield_cal])
 
 
 
