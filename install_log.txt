@@ -1,0 +1,128 @@
+-- 建立vitual env
+pip install django
+pip install win32com
+pip install django-pyodbc-azure
+
+------install Django HighChart
+git clone https://github.com/novapost/django-highcharts.git
+cd django-highcharts
+pip install -e ./
+
+-- Built Django project
+django-admin startproject [要建立的名稱 ex: ydssite]
+
+-- create app
+manage.py startapp [app name ; ex:ate]
+
+-- modify ydssite/ydssite/settings.py
+ALLOWED_HOSTS = ['*']
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'index',
+    'highcharts',
+    'ate',
+]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'ate',
+        'USER': 'sa',
+        'PASSWORD': 'yds6f',
+        'HOST': '192.168.1.4',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'host_is_server': True
+        },
+    },
+}
+
+TIME_ZONE = 'Asia/Taipei'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(os.path.dirname(__file__),'static')
+#設置圖片等靜態文件的路徑
+STATICFILES_DIRS = (
+    ('css',os.path.join(STATIC_ROOT,'css').replace('\\','/') ),
+    ('js',os.path.join(STATIC_ROOT,'js').replace('\\','/') ),
+    ('images',os.path.join(STATIC_ROOT,'images').replace('\\','/') ),
+    ('uploads',os.path.join(STATIC_ROOT,'uploads').replace('\\','/') ),
+)
+
+-- create statics directory
+├─static
+│  ├─admin
+│  │  ├─css
+│  │  │  └─vendor
+│  │  │      └─select2
+│  │  ├─fonts
+│  │  ├─img
+│  │  │  └─gis
+│  │  └─js
+│  │      ├─admin
+│  │      └─vendor
+│  │          ├─jquery
+│  │          ├─select2
+│  │          │  └─i18n
+│  │          └─xregexp
+│  ├─css
+│  ├─images
+│  ├─js
+│  │  └─highcharts
+│  │      ├─modules
+│  │      └─themes
+│  └─uploads
+└─__pycache__
+
+-- create \ydssite\index directory
+create  \ydssite\index\templates\index.html
+
+modify \ydssite\index\views.py
+===
+from __future__ import unicode_literals
+from django.shortcuts import render
+from django.http import HttpResponse
+from datetime import datetime
+from django import template
+
+def index(request):
+    return render(request, 'index.html')
+===
+
+-- modify \ydssite\ydssite\urls.py
+===
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib import staticfiles
+from django.contrib import admin
+from django.urls import path
+from index import views as index_views
+from ate import views as ate_views
+
+urlpatterns = [
+	path('', index_views.index),
+    path('admin/', admin.site.urls),
+    path('ate/', ate_views.index),
+]
+===
+
+-- colloect statics file
+python manage.py collectstatic
+
+-- database migration
+python manage.py migrations
+python manage.py migrate
+
+-- 將已存在的SQL table轉入 models.py
+python manage.py inspectdb [table1][table2] > app/models.py
+
+自動生成的models內容:
+    class Meta:
+        managed = False # 如果不讓migratation進行管理的話,則為False
+        db_table = 'LotTitle' #程式內使用的table name

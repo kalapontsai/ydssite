@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+<head>
+	<title>ATE 測項清單</title>
+   <link rel="stylesheet" href="/static/css/style_ts.css">
+</head>
+<body>
+{% csrf_token %}
+<div align="center"><h1ATE 測項清單 :</h1></div>
+<table class="t1">
+  <tr>
+    <th width = '25%'>欄位</th>
+    <th width= '25%'>單位</th>
+    <th width="20">名稱</th>
+  </tr>
+  {% for i in raw %}
+   <tr>
+      <td><div align="center">{{i.col}}</div></td>
+      <td><div align="center">{{i.unit}}</div></td>
+      <td><div align="center">{{i.name}}</div></td>
+   </tr>
+  {% endfor %}
+ </table>
+</body>
+</html>
