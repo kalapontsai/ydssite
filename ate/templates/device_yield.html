@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ATE HomePage</title>
+    <title>單一產品良率</title>
     <link rel="stylesheet" href="/static/css/style_l.css">
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/highcharts/highcharts.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/highcharts/modules/exporting.js' %}"></script>
 </head>
@@ -17,7 +17,11 @@
 		<td><div align="center">
 				<select  name="device" required="required" class="form-control">
 					{% for i in devices %}
-					<option>{{i}}</option>
+                  {% if i == device %}
+					    <option selected="selected">{{i}}</option>
+                   {% else %}
+                   <option>{{i}}</option>
+                  {% endif %}
 					{% endfor %}
 				</select>
 			</div>
@@ -28,16 +32,18 @@
 </table>
 </form>
 
-<div align="center"><h2>機種名稱:{{ device }} </h2></div>
+<div align="center"><h3>機種名稱:{{ device }} </h3></div>
 <table class="t1">
 	<tr>
-		<th width=>批號</th>
+      <th width="150">日期</th>
+		<th >批號</th>
 		<th width="60">總數</th>
 		<th width="60">良品</th>
 		<th width="60">良率</th>
 	</tr>
 	{% for i in arr %}
 	<tr>
+      <td><div align="center">{{i.date}}</div></td>
 		<td><div align="center">{{i.lotname}}</div></td>
 		<td><div align="center">{{i.total}}</div></td>
 		<td><div align="center">{{i.good}}</div></td>

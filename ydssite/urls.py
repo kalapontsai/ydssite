@@ -26,4 +26,5 @@ urlpatterns = [
     path('ate/', ate_views.index),
     path('ate/test_item_list', ate_views.test_item_list),
     path('ate/device_yield', ate_views.device_yield),
+    path('ate/spcc_xr', ate_views.spcc_xr),
 ]
