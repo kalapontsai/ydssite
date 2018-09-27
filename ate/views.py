@@ -92,12 +92,13 @@ def spcc_xr(request):
 			sum_num += tt[item_no]
 			sample_pcs += 1
 		if len(top_5) < 1:
-			top_5 = [0,0,0,0,0]
+			continue
+			#top_5 = [0,0,0,0,0]
 		max_num = max(top_5)
 		min_num = min(top_5)
 		rang_num = round(max_num - min_num,3)
 		avg_num = round(sum_num/len(top_5),3)
-		lot_dt = str(t_lot['lotdt_idx'])[:9]
+		lot_dt = str(t_lot['lotdt_idx'])[:8]
 
 
 		lots.append({'lotdt':lot_dt, 'lotname':t_lot['lotname'],'col_h':t_lot[t_item_h],\

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>測項 X-R管制圖</title>
-    <link rel="stylesheet" href="/static/css/style_l.css">
-    <script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/highcharts/highcharts.js' %}"></script>
+   <title>測項 X-R管制圖</title>
+   <link rel="stylesheet" href="/static/css/style_l.css">
+   <script type="text/javascript" src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/highcharts/highcharts.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/highcharts/modules/exporting.js' %}"></script>
 </head>
 <body>
@@ -96,7 +96,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
    var title = {
-      text: '平均管制圖'
+      text: '平均值管制圖'
    };
    var subtitle = {
       text: 'X-bar chart'
@@ -110,15 +110,16 @@ $(document).ready(function() {
             '{{i.lotname}}',
          {% endfor %}
       ]
+
    };
-   var yAxis = [{ //Y1
+   var yAxis = { //Y1
       title: {
          text: '{{spc.unit}}',
          style: {
                color: Highcharts.getOptions().colors[0]
             }
       }
-   }];
+   };
 
    var tooltip = {
       valueSuffix: '{{spc.unit}}'
@@ -135,6 +136,7 @@ $(document).ready(function() {
       {
          name: 'USL',
          yAxis: 0,
+         color: 'red',
          data: [
                   {% for i in lots %}
                      {{spc.USL}},
@@ -147,6 +149,7 @@ $(document).ready(function() {
       {
          name: 'LSL',
          yAxis: 0,
+         color: 'red',
          data: [
                   {% for i in lots %}
                      {{spc.LSL}},
@@ -159,6 +162,7 @@ $(document).ready(function() {
       {
          name: 'UCL',
          yAxis: 0,
+         color: 'orange',
          data: [
                   {% for i in lots %}
                      {{spc.UCL}},
@@ -171,6 +175,7 @@ $(document).ready(function() {
       {
          name: 'LCL',
          yAxis: 0,
+         color: 'orange',
          data: [
                   {% for i in lots %}
                      {{spc.LCL}},
@@ -183,6 +188,7 @@ $(document).ready(function() {
       {
          name: 'CL',
          yAxis: 0,
+         color: 'green',
          data: [
                   {% for i in lots %}
                      {{spc.x_bar}},
@@ -195,6 +201,7 @@ $(document).ready(function() {
       {
          name: 'X',
          yAxis: 0,
+         color: 0,
          data: [
                  {% for i in lots %}
                      {{i.avg_num}},
