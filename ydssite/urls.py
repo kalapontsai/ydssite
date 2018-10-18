@@ -16,15 +16,20 @@ Including another URLconf
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import staticfiles
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path
-from index import views as index_views
+from ydssite import views as index_views
 from ate import views as ate_views
 
 urlpatterns = [
 	path('', index_views.index),
     path('admin/', admin.site.urls),
-    path('ate/', ate_views.index),
-    path('ate/test_item_list', ate_views.test_item_list),
-    path('ate/device_yield', ate_views.device_yield),
-    path('ate/spcc_xr', ate_views.spcc_xr),
+    path('ate/', ate_views.index, name='ate'),
+    path('ate/test_item_list/', ate_views.test_item_list),
+    path('ate/device_yield/', ate_views.device_yield),
+    path('ate/spcc_xr/', ate_views.spcc_xr),
+    path('ajax/', index_views.ajax_test),
+    path('ajax/add/', index_views.ajax_test_add),
+    path('accounts/login/', index_views.login),
+    path('accounts/logout/', index_views.logout),
 ]

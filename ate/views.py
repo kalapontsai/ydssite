@@ -1,20 +1,26 @@
 from __future__ import unicode_literals
 import math
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import auth  # 為了認證功能
 from datetime import datetime
 from django import template
 from .models import Lottitle,Testdata,Testresult,Testunit
 
 def index(request):
-	#'ateindex.html'
-    return render(request, 'ateindex.html')
+	if not request.user.is_authenticated:
+		return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
+	return render(request, 'ateindex.html')
 
 def test_item_list(request):
+	if not request.user.is_authenticated:
+		return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
 	t_item = Testunit.objects.all().order_by('col')
 	return render(request, 'ate_test_item_list.html', {'raw': t_item})
 
 def device_yield(request):
+	if not request.user.is_authenticated:
+		return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
 	devices = []
 	rows = Lottitle.objects.values('device').distinct()
 	### 把queryset轉成list ###
@@ -46,6 +52,8 @@ def device_yield(request):
 	return render(request, 'device_yield.html', {'devices': devices,'device': device, 'arr':arr})
 
 def spcc_xr(request):
+	if not request.user.is_authenticated:
+		return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
 	#列出測項清單
 	test_items = Testunit.objects.values('col','unit','name').order_by('col')
 	if 'col' in request.POST:
@@ -71,17 +79,14 @@ def spcc_xr(request):
 	item_no = "col_" + str(col)
 	t_item_h = item_no + "_h"
 	t_item_l = item_no + "_l"
-	rows = Lottitle.objects.values('lotdt_idx','lotname',t_item_h,t_item_l)\
-	.order_by('lotdt_idx').filter(device=device)
-	limit = 10
-	sample_lot = 0
+	data_rows = Lottitle.objects.values('lotdt_idx','lotname',t_item_h,t_item_l)\
+	.order_by('lotdt_idx').filter(device=device)[:30]
+	#limit = 30
 	sample_pcs = 0
 	lots = []
 	top_all = [] #所有的值
 	rang_r = 0
-	for t_lot in rows:
-		if sample_lot >= limit:
-			break
+	for t_lot in data_rows:
 		top5_data = Testdata.objects.values(item_no).filter(lotdt_idx=t_lot['lotdt_idx'],\
 			t_result=1)[:5]
 		top_5 = []
@@ -91,7 +96,7 @@ def spcc_xr(request):
 			top_all.append(tt[item_no])
 			sum_num += tt[item_no]
 			sample_pcs += 1
-		if len(top_5) < 1:
+		if len(top_5) < 1 or top_5 == [0.0, 0.0, 0.0, 0.0, 0.0] :
 			continue
 			#top_5 = [0,0,0,0,0]
 		max_num = max(top_5)
@@ -100,13 +105,15 @@ def spcc_xr(request):
 		avg_num = round(sum_num/len(top_5),3)
 		lot_dt = str(t_lot['lotdt_idx'])[:8]
 
-
 		lots.append({'lotdt':lot_dt, 'lotname':t_lot['lotname'],'col_h':t_lot[t_item_h],\
 			'col_l':t_lot[t_item_l],'top5':top_5,'avg_num':avg_num,'rang_num':rang_num})
 		rang_r += rang_num
-		sample_lot += 1
-	x_bar = round(sum(top_all)/len(top_all),3)
-	r_bar = round(rang_r/sample_lot,3)
+	if len(lots) == 0 or len(top_all) == 0 :
+		x_bar = 0
+		r_bar = 0
+	else:
+		x_bar = round(sum(top_all)/len(top_all),3)
+		r_bar = round(rang_r/len(lots),3)
 	#檢查是否為有效值
 	if x_bar != 0 and r_bar != 0:
 		#標準差
