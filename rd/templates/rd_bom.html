@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% block title %}RD - BOM edit{% endblock %}
+{% load static %}
+{% block css %}{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{% static 'js/clipboard.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bom.js' %}"></script>
+{% endblock %}
+{% block content %}
+ <script>
+    var clipboard = new ClipboardJS('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+</script>
+  <h1 class="center">RD BOM edit</h1>
+  <div class="container">
+    <div class="row">
+            <div class='col-lg-12'>
+                <table class="TB_Bomlist">
+                    <thead>
+                        <tr>
+                            <th>類別</th>
+                            <th>規格-品名-料號</th>
+                            <th><div class="btn-group" role="group" aria-label="Basic example"><button type="button" class="btn btn-default" onclick='select_click()'>加入</button><button type="button" class="btn btn-default" onclick='del_click()'>清除</button><button class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="#tbody">複製到剪貼簿</button><button type="button" class="btn btn-default" onclick='exportExcel()'>EXCEL</button></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CP</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_cp" list="cp_spec" size = "100" /> 
+                                <datalist id="cp_spec"> 
+                                {% for i in cp %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RS</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_rs" list="rs_spec" size = "100" /> 
+                                <datalist id="rs_spec"> 
+                                {% for i in rs %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CO</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_co" list="co_spec" size = "100" /> 
+                                <datalist id="co_spec"> 
+                                {% for i in co %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>BO</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_bo" list="bo_spec" size = "100" /> 
+                                <datalist id="bo_spec"> 
+                                {% for i in bo %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>MS</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_ms" list="ms_spec" size = "100" /> 
+                                <datalist id="ms_spec"> 
+                                {% for i in ms %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>XF</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_xf" list="xf_spec" size = "100" /> 
+                                <datalist id="xf_spec"> 
+                                {% for i in xf %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>DI</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_di" list="di_spec" size = "100" /> 
+                                <datalist id="di_spec"> 
+                                {% for i in di %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>IC</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_ic" list="ic_spec" size = "100" /> 
+                                <datalist id="ic_spec"> 
+                                {% for i in ic %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PC</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_pc" list="pc_spec" size = "100" /> 
+                                <datalist id="pc_spec"> 
+                                {% for i in pc %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>LS</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_ls" list="ls_spec" size = "100" /> 
+                                <datalist id="ls_spec"> 
+                                {% for i in ls %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TR</td>
+                            <td colspan="2">
+                                <input type="text" id="txt_tr" list="tr_spec" size = "100" /> 
+                                <datalist id="tr_spec"> 
+                                {% for i in tr %}
+                                    <option value="{{ i.content }}" /> 
+                                {% endfor %}
+                                </datalist>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <div class="row">
+            <div class='col-md-12'>
+                <div id="div_excel"> 
+                <table class="TB_DATA" id="table1">
+                <caption>編輯清單</caption>
+                <thead>
+                <tbody id="tbody">
+                    <tr>
+                        <td>料號</td>
+                        <td>品名</td>
+                        <td>規格</td>
+                    </tr>
+                </tbody>
+                </table>
+                </div>
+            </div>
+     </div>
+  </div>
+{% endblock content %}

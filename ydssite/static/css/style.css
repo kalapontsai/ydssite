@@ -1,0 +1,219 @@
+/* ========================================= */
+/* Screen Template By Bootstrapious.com      */
+/* ========================================= */
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: #024457;
+  background: #f2f2f2;
+}
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+}
+
+h1.center {
+  text-align: center;
+}
+
+h1 span {
+  color: #2F4F4F;
+}
+
+h2 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #556B2F;
+}
+
+h3 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #556B2F;
+}
+
+h3.center {
+  text-align: center;
+}
+
+h3 b {
+  font-weight:bold;
+}
+
+h4 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #556B2F;
+}
+
+h4.center {
+  text-align: center;
+}
+
+table.TB_MENU {
+  width:100%;
+  border-collapse:collapse;
+}
+table.TB_MENU caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+}
+table.TB_MENU thead th {
+  padding:5px 0px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  background-color:#fff;
+}
+table.TB_MENU tbody td {
+  padding:5px 10px;
+  color:#555;
+  text-align:center;
+  background-color:#bfd9bf;
+  border-bottom:0px solid #000;
+}
+table.TB_MENU tfoot td {
+  padding:5px 0px;
+  text-align:center;
+  background-color:#d6d6a5;
+}
+table.TB_DATA {
+  width:100%;
+  border-collapse:collapse;
+}
+table.TB_DATA caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+  background-color:#f3f6f9;
+}
+table.TB_DATA thead th {
+  padding:5px 0px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  background-color:#568f56;
+}
+table.TB_DATA tbody td {
+  padding:5px 0px;
+  color:#555;
+  text-align:center;
+  background-color:#fff;
+  border-bottom:1px solid #915957;
+}
+table.TB_DATA tfoot td {
+  padding:5px 0px;
+  text-align:center;
+  background-color:#d6d6a5;
+}
+table.TB_list {
+  width:100%;
+  border-collapse:collapse;
+}
+table.TB_list caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+  background-color:#f2f2f2;
+}
+table.TB_list thead th {
+  padding:5px 0px;
+  color:#000;
+  font-size:16px;
+  text-align:center;
+  background-color:#fff;
+}
+table.TB_list tbody td {
+  padding:5px 10px;
+  color:#fff;
+  text-align:center;
+  background-color:#f2f2f2;
+  border-bottom:1px solid #000;
+}
+table.TB_list tfoot td {
+  padding:5px 0px;
+  text-align:center;
+  background-color:#d6d6a5;
+}
+
+table.TB_Bomlist {
+  width: 300px;
+}
+table.TB_Bomlist caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+  background-color:#f2f2f2;
+}
+table.TB_Bomlist thead th {
+  padding:5px 0px;
+  color:#000;
+  font-size:16px;
+  text-align:center;
+  background-color:#fff;
+}
+table.TB_Bomlist tbody td {
+  padding:5px 10px;
+  color:#0000ff;
+  text-align:center;
+  background-color:#f2f2f2;
+  border-bottom:1px solid #000;
+}
+table.TB_Bomlist tfoot td {
+  padding:5px 0px;
+  text-align:center;
+  background-color:#d6d6a5;
+}
+
+table.TB_calendar {
+  width:80%;
+  border-collapse:collapse;
+}
+table.TB_calendar caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+}
+table.TB_calendar thead th {
+  padding:2px 2px;
+  font-size:16px;
+  text-align:center;
+}
+table.TB_calendar tbody td {
+  padding:5px 5px;
+  text-align:center;
+}
+table.TB_TB_calendar tfoot td {
+  padding:5px 0px;
+  text-align:center;
+}
+.dropdown-item {
+  padding:1px 5px;
+}
+.row {
+    text-align: center;
+}
+.col-lg-12 {
+    display:block;
+}
+
+.box {
+  float: left;
+  font-size:16px;
+  width: 120px;
+  height: 25px;
+  margin: 10px;
+  background-color:#cceeff;
+  border:1px solid #006699;
+}
+/* mobil screen used */
+@media (max-width: 767px) { 
+    .foo{
+      display:none;
+    }
+}

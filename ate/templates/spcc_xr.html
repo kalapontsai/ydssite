@@ -6,221 +6,231 @@
 <script type="text/javascript" src="{% static 'js/highcharts/modules/exporting.js' %}"></script>
 {% endblock %}
 {% block content %}
-<form name="spcc_func" action="" method="post">
-{% csrf_token %}
-<table class="t1">
-	<tr>
-		<td><div align="center">
-				<select  name="col" required="required" class="form-control">
-					{% for i in test_items %}
-                  {% if i.col == spc.col %}
-					    <option value={{i.col}} selected="selected">{{i.name}}</option>
-                   {% else %}
-                   <option value={{i.col}}>{{i.name}}</option>
-                  {% endif %}
-					{% endfor %}
-				</select>
-			</div>
-		</td>
-      <td><div align="center">
-            <select  name="device" required="required" class="form-control">
-               {% for i in devices %}
-                  {% if i == spc.device %}
-                   <option selected="selected">{{i}}</option>
-                   {% else %}
-                   <option>{{i}}</option>
-                  {% endif %}
-               {% endfor %}
-            </select>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+           <form name="spcc_func" action="" method="post">
+           {% csrf_token %}
+           <table class="TB_MENU">
+             <tbody>
+                <tr>
+                  <td><select  name="col" required="required" class="form-control">
+        					{% for i in test_items %}
+                          {% if i.col == spc.col %}
+        					    <option value={{i.col}} selected="selected">{{i.name}}</option>
+                           {% else %}
+                           <option value={{i.col}}>{{i.name}}</option>
+                          {% endif %}
+        					{% endfor %}
+        				  </select>
+                  </td>
+                  <td><select  name="device" required="required" class="form-control">
+                        {% for i in devices %}
+                          {% if i == spc.device %}
+                            <option selected="selected">{{i}}</option>
+                          {% else %}
+                            <option>{{i}}</option>
+                             {% endif %}
+                        {% endfor %}
+                      </select>
+                  </td>
+              		<td><input type="image" src="/static/images/button_start.png" border="0" alt="重新篩選" title=" 重新篩選" width="80"></td>
+              	 </tr>
+             </tbody>
+           </table>
+           </form>
          </div>
-      </td>
-		<td><div><input type="image" src="/static/images/button_start.png" border="0" alt="重新篩選" title=" 重新篩選" width="80"></div></td>
-	<tr>
-</table>
-</form>
-<div align="center"><h3>機種 : {{spc.device}}</h3></div>
-<div align="center"><h3>測項 : {{spc.test_item}}</h3></div>
-<table class="t1">
-   <tr>
-      <th width="10%">單位</th>
-      <th width="10%">USL</th>
-      <th width="10%">LSL</th>
-      <th width="10%">X-Bar</th>
-      <th width="10%">Range</th>
-      <th width="10%">樣本數</th>
-      <th width="10%">標準差</th>
-      <th width="10%">UCL</th>
-      <th width="10%">LCL</th>
-      <th width="10%">Cp</th>
-      <th>Cpk</th>
-   </tr>
-   <tr>
-      <td><div align="center">{{spc.unit}}</div></td>
-      <td><div align="center">{{spc.USL}}</div></td>
-      <td><div align="center">{{spc.LSL}}</div></td>
-      <td><div align="center">{{spc.x_bar}}</div></td>
-      <td><div align="center">{{spc.r_bar}}</div></td>
-      <td><div align="center">{{spc.sample_pcs}}</div></td>
-      <td><div align="center">{{spc.std_dev}}</div></td>
-      <td><div align="center">{{spc.UCL}}</div></td>
-      <td><div align="center">{{spc.LCL}}</div></td>
-      <td><div align="center">{{spc.Cp}}</div></td>
-      <td><div align="center">{{spc.Cpk}}</div></td>
-   </tr>
-</table>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="center">機種 : {{spc.device}}&nbsp;&nbsp;測項 : {{spc.test_item}}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+         <div class="box">單位:{{spc.unit}}</div>
+         <div class="box">USL:{{spc.USL}}</div>
+         <div class="box">LSL:{{spc.LSL}}</div>
+         <div class="box">X-Bar:{{spc.x_bar}}</div>
+         <div class="box">Range:{{spc.r_bar}}</div>
+         <div class="box">樣本數:{{spc.sample_pcs}}</div>
+         <div class="box">標準差:{{spc.std_dev}}</div>
+         <div class="box">UCL:{{spc.UCL}}</div>
+         <div class="box">LCL:{{spc.LCL}}</div>
+         <div class="box">Cp:{{spc.Cp}}</div>
+         <div class="box">Cpk:{{spc.Cpk}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="center">批次/資料</h4>
+        </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-12">
+            <table class="TB_DATA">
+               <thead>
+                  <tr>
+                     <th width="100">日期</th>
+                     <th width="200">批號</th>
+                     <th>Data</th>
+                     <th width="60">Avg.</th>
+                     <th width="60">Range</th>
+                  </tr>
+               </thead>
+               <tbody>
+               {% for i in lots %}
+                  <tr>
+                     <td>{{i.lotdt}}</td>
+                     <td>{{i.lotname}}</td>
+                     <td>{{i.top5}}</td>
+                     <td>{{i.avg_num}}</td>
+                     <td>{{i.rang_num}}</td>
+                  </tr>
+               {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <br>
+      <div class="row">
+         <div class="col-lg-12">
+            <div id="container" style="width: 800px; height: 400px; margin: 0 auto">
+            <script type="text/javascript">
+            $(document).ready(function() {
+               var title = {
+                  text: '平均值管制圖'
+               };
+               var subtitle = {
+                  text: 'X-bar chart'
+               };
+               var xAxis = {
+                  title: {
+                     text: '批號'
+                  },
+                  categories: [
+                     {% for i in lots %}
+                        '{{i.lotname}}',
+                     {% endfor %}
+                  ]
 
-<table class="t1">
-   <tr>
-      <th width="100">日期</th>
-      <th width="200">批號</th>
-      <th>Data</th>
-      <th width="60">Avg.</th>
-      <th width="60">Range</th>
-   </tr>
-   {% for i in lots %}
-   <tr>
-      <td><div align="center">{{i.lotdt}}</div></td>
-      <td><div align="center">{{i.lotname}}</div></td>
-      <td><div align="center">{{i.top5}}</div></td>
-      <td><div align="center">{{i.avg_num}}</div></td>
-      <td><div align="center">{{i.rang_num}}</div></td>
-   </tr>
-   {% endfor %}
-</table>
-<br>
-<div id="container" style="width: 800px; height: 400px; margin: 0 auto">
-<script type="text/javascript">
-$(document).ready(function() {
-   var title = {
-      text: '平均值管制圖'
-   };
-   var subtitle = {
-      text: 'X-bar chart'
-   };
-   var xAxis = {
-      title: {
-         text: '批號'
-      },
-      categories: [
-         {% for i in lots %}
-            '{{i.lotname}}',
-         {% endfor %}
-      ]
+               };
+               var yAxis = { //Y1
+                  title: {
+                     text: '{{spc.unit}}',
+                     style: {
+                           color: Highcharts.getOptions().colors[0]
+                        }
+                  }
+               };
 
-   };
-   var yAxis = { //Y1
-      title: {
-         text: '{{spc.unit}}',
-         style: {
-               color: Highcharts.getOptions().colors[0]
-            }
-      }
-   };
+               var tooltip = {
+                  valueSuffix: '{{spc.unit}}'
+               }
 
-   var tooltip = {
-      valueSuffix: '{{spc.unit}}'
-   }
+               var legend = {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+               };
 
-   var legend = {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle',
-      borderWidth: 0
-   };
+               var series =  [
+                  {
+                     name: 'USL',
+                     yAxis: 0,
+                     color: 'red',
+                     data: [
+                              {% for i in lots %}
+                                 {{spc.USL}},
+                              {% endfor %}
+                     ],
+                     tooltip: {
+                            valueSuffix: '{{spc.unit}}'
+                        }
+                  }, 
+                  {
+                     name: 'LSL',
+                     yAxis: 0,
+                     color: 'red',
+                     data: [
+                              {% for i in lots %}
+                                 {{spc.LSL}},
+                              {% endfor %}
+                     ],
+                     tooltip: {
+                            valueSuffix: '{{spc.unit}}'
+                        }
+                  },
+                  {
+                     name: 'UCL',
+                     yAxis: 0,
+                     color: 'orange',
+                     data: [
+                              {% for i in lots %}
+                                 {{spc.UCL}},
+                              {% endfor %}
+                     ],
+                     tooltip: {
+                            valueSuffix: '{{spc.unit}}'
+                        }
+                  }, 
+                  {
+                     name: 'LCL',
+                     yAxis: 0,
+                     color: 'orange',
+                     data: [
+                              {% for i in lots %}
+                                 {{spc.LCL}},
+                              {% endfor %}
+                     ],
+                     tooltip: {
+                            valueSuffix: '{{spc.unit}}'
+                        }
+                  },
+                  {
+                     name: 'CL',
+                     yAxis: 0,
+                     color: 'green',
+                     data: [
+                              {% for i in lots %}
+                                 {{spc.x_bar}},
+                              {% endfor %}
+                     ],
+                     tooltip: {
+                            valueSuffix: '{{spc.unit}}'
+                        }
+                  },
+                  {
+                     name: 'X',
+                     yAxis: 0,
+                     color: 0,
+                     data: [
+                             {% for i in lots %}
+                                 {{i.avg_num}},
+                              {% endfor %}
+                     ],
+                     tooltip: {
+                            valueSuffix: '{{spc.unit}}'
+                        }
+                  }
+               ];
 
-   var series =  [
-      {
-         name: 'USL',
-         yAxis: 0,
-         color: 'red',
-         data: [
-                  {% for i in lots %}
-                     {{spc.USL}},
-                  {% endfor %}
-         ],
-         tooltip: {
-                valueSuffix: '{{spc.unit}}'
-            }
-      }, 
-      {
-         name: 'LSL',
-         yAxis: 0,
-         color: 'red',
-         data: [
-                  {% for i in lots %}
-                     {{spc.LSL}},
-                  {% endfor %}
-         ],
-         tooltip: {
-                valueSuffix: '{{spc.unit}}'
-            }
-      },
-      {
-         name: 'UCL',
-         yAxis: 0,
-         color: 'orange',
-         data: [
-                  {% for i in lots %}
-                     {{spc.UCL}},
-                  {% endfor %}
-         ],
-         tooltip: {
-                valueSuffix: '{{spc.unit}}'
-            }
-      }, 
-      {
-         name: 'LCL',
-         yAxis: 0,
-         color: 'orange',
-         data: [
-                  {% for i in lots %}
-                     {{spc.LCL}},
-                  {% endfor %}
-         ],
-         tooltip: {
-                valueSuffix: '{{spc.unit}}'
-            }
-      },
-      {
-         name: 'CL',
-         yAxis: 0,
-         color: 'green',
-         data: [
-                  {% for i in lots %}
-                     {{spc.x_bar}},
-                  {% endfor %}
-         ],
-         tooltip: {
-                valueSuffix: '{{spc.unit}}'
-            }
-      },
-      {
-         name: 'X',
-         yAxis: 0,
-         color: 0,
-         data: [
-                 {% for i in lots %}
-                     {{i.avg_num}},
-                  {% endfor %}
-         ],
-         tooltip: {
-                valueSuffix: '{{spc.unit}}'
-            }
-      }
-   ];
+               var json = {};
 
-   var json = {};
+               json.title = title;
+               json.subtitle = subtitle;
+               json.xAxis = xAxis;
+               json.yAxis = yAxis;
+               json.tooltip = tooltip;
+               json.legend = legend;
+               json.series = series;
 
-   json.title = title;
-   json.subtitle = subtitle;
-   json.xAxis = xAxis;
-   json.yAxis = yAxis;
-   json.tooltip = tooltip;
-   json.legend = legend;
-   json.series = series;
-
-   $('#container').highcharts(json);
-});
-</script>
-</div>
+               $('#container').highcharts(json);
+            });
+            </script>
+            </div>
+         </div>
+      </div>
+   </div>
 {% endblock content %}

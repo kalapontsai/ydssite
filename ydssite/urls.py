@@ -20,6 +20,8 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 from ydssite import views as index_views
 from ate import views as ate_views
+from hr import views as hr_views
+from rd import views as rd_views
 
 urlpatterns = [
 	path('', index_views.index),
@@ -32,4 +34,8 @@ urlpatterns = [
     path('ajax/add/', index_views.ajax_test_add),
     path('accounts/login/', index_views.login),
     path('accounts/logout/', index_views.logout),
+    path('hr/cal/', hr_views.cal),
+    path('hr/board/', hr_views.board),
+    path('rd/bom/', rd_views.bom),
+    path('rd/bom1/', rd_views.bom1),
 ]

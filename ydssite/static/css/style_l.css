@@ -1,0 +1,88 @@
+/* ========================================= */
+/* Screen Template By Bootstrapious.com      */
+/* ========================================= */
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
+.t1 {
+  padding: 10px 5px ;
+  margin-left:auto; 
+  margin-right:auto;
+  width: 100%;
+  overflow: hidden;
+  color: #024457;
+  background: #FFF;
+  border-radius: 10px;
+  border: 1px solid #167F92;
+}
+
+.t1 a {
+  text-decoration: none
+}
+
+.t1 tr {
+  border: 1px solid #D9E4E6;
+}
+
+.t1 tr:nth-child(odd) {
+  background-color: #EAF3F3;
+}
+
+.t1 th {
+  border: 1px solid #D9E4E6;
+  padding: 5px 2px;
+}
+
+.t1 td {
+  border: 1px solid #D9E4E6;
+  padding: 2px 10px;
+}
+
+.t1 td.center {
+  text-align: center;
+}
+
+.t1 td b {
+  color: #4e5a0a;
+}
+
+body {
+  padding: 0 2em;
+  font-family: Arial, sans-serif;
+  color: #024457;
+  background: #f2f2f2;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+}
+
+h1.center {
+  text-align: center;
+}
+
+h1 span {
+  color: #943a18;
+}
+
+h2 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #556B2F;
+}
+
+h3 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #556B2F;
+}
+
+h3.center {
+  text-align: center;
+}

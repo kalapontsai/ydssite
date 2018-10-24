@@ -1,0 +1,15 @@
+#git add -f <file> 強制加入忽略的檔案
+#$ git clean -fX 清除忽略的檔案
+*sublime*
+__pycache__
+migrations
+db.sqlite3
+*.js
+ydssite/static/admin/
+ydssite/static/images/
+ydssite/static/js/
+ydssite/static/uploads
+env.bat
+ate/migrations/
+rd/migrations/
+migrations

@@ -1,0 +1,130 @@
+/* ========================================= */
+/* Screen Template By Bootstrapious.com      */
+/* ========================================= */
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
+.t1 {
+  padding: 10px 5px ;
+  margin-left:auto; 
+  margin-right:auto;
+  width: 60%;
+  overflow: hidden;
+  color: #024457;
+  background: #FFF;
+  border-radius: 10px;
+  border: 1px solid #167F92;
+}
+
+.t1 a {
+  text-decoration: none
+}
+
+.t1 tr {
+  border: 1px solid #D9E4E6;
+}
+
+.t1 tr:nth-child(odd) {
+  background-color: #EAF3F3;
+}
+
+.t1 th {
+  border: 1px solid #D9E4E6;
+  padding: 5px 2px;
+}
+
+.t1 th b {
+  font-weight:bold;
+}
+
+.t1 td {
+  border: 1px solid #D9E4E6;
+  padding: 10px;
+}
+
+.t1 td.center {
+  text-align: center;
+}
+
+.t1 td b {
+  color: #4e5a0a;
+}
+
+.t1 img{
+  width:30px;
+  height:30px;
+}
+
+body {
+  padding: 0 2em;
+  font-family: Arial, sans-serif;
+  color: #024457;
+  background: #f2f2f2;
+}
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+}
+
+h1.center {
+  text-align: center;
+}
+
+h1 span {
+  color: #943a18;
+}
+
+h2 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #556B2F;
+}
+
+h3 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #556B2F;
+}
+
+h3.center {
+  text-align: center;
+}
+
+.form-control {
+  display: block;
+  width: 80%;
+  height: 50px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #999999;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.form-control::-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: #999999;
+}
+.form-control::-webkit-input-placeholder {
+  color: #999999;
+  opacity: 1 !important;
+}
+.form-control:focus {
+  border-color: #4fbfa8;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(79, 191, 168, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(79, 191, 168, 0.6);
+}
