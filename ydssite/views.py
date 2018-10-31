@@ -4,9 +4,19 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django import template
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
+from django.contrib.auth.models import User,Group
 
 def index(request):
-    return render(request, 'index.html')
+    #列出某group中有哪些人
+    #qs = User.objects.filter(groups__name__in=['RD1'])
+    #列出使用者的群組名單
+    #qry = Group.objects.filter(user = request.user)
+    #<QuerySet [<Group: RD1>, <Group: HR>, <Group: users>]>
+    a = ""
+    return render(request, 'index.html',{'ss':a})
+
+def unauthorized(request):
+    return render(request, 'unauthorized.html')
 
 def login(request):
     if request.user.is_authenticated: 

@@ -13,3 +13,4 @@ env.bat
 ate/migrations/
 rd/migrations/
 migrations
+*.log

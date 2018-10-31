@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}RD - BOM edit2{% endblock %}
+{% load static %}
+{% block css %}
+<style>
+.bottom {
+  position: fixed; left: 30%; bottom: 10px;
+  background-color:#f2f2f2;
+}
+div.center {
+  margin:auto;
+  width: 600px;
+}
+    }
+  </style>
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{% static 'js/clipboard.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bom2.js' %}"></script>
+{% endblock %}
+{% block content %}
+ <script>
+    var clipboard = new ClipboardJS('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+</script>
+  <h1 class="center">RD BOM edit type 2</h1>
+     <div class="center">
+         <table class="TB_Bomlist" id="import_path">
+            <tbody>
+                <tr>
+                    <td colspan="2">PCB清單讀取位置&nbsp;ex:&nbsp;\\192.168.1.9\研發部\rdt\Temp\BOM編輯清單\pcb.csv</td>
+                </tr>
+                <tr>
+                <form name="readcsv" action="/rd/bom1/" method="post">
+                {% csrf_token %}
+                    <td><input type="text" id="txt_path" name="txt_path" size="80" value="{{path}}" placeholder="請輸入完整檔案路徑"></td>
+                    <td><button type="summit" id="sum" class="btn btn-primary"><span class="glyphicon glyphicon-open"></span>&nbsp;Open</button></td>
+                </form>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class='bottom'>
+        <table class="TB_Bomlist">
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" id="txt_comp" list="spec_0" size = "80"> 
+                        <datalist id="spec_0"> 
+                        {% for i in comp_list %}
+                            <option value="{{ i.content }}"> 
+                        {% endfor %}
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>品名-規格-料號&nbsp;&nbsp;<a href="{% static 'uploads/TIPTOP-ALL.csv' %}" download>excel檔下載</a></td>
+                    <td><div class="btn-group" role="group" aria-label="Basic example"><button type="button" class="btn btn-default" onclick='del_click()'>清除</button><button class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="#table1">複製到剪貼簿</button><button type="button" class="btn btn-default" onclick='exportExcel()'>EXCEL</button></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="div_excel"> 
+        <table class="TB_DATA" id="table1">
+            <caption>編輯清單</caption>
+            <thead>
+                <tr>
+                    <th>零件位置</th>
+                    <th>品名</th>
+                    <th>規格</th>
+                    <th>料號</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody id="PcbList">
+                {% for i in pcb_list %}
+                <tr id="{{i.idx}}">
+                    <td>{{i.pos}}</td>
+                    <td>na</td>
+                    <td>{{i.spec}}</td>
+                    <td>na</td>
+                    <td><button type="summit" id="sum" class="btn btn-primary"><span onclick="copy_click('{{i.idx}}')" class='glyphicon glyphicon-plus'></span></button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div><br><br><br><br><br>
+{% endblock content %}

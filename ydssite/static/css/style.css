@@ -104,7 +104,7 @@ table.TB_DATA tbody td {
   color:#555;
   text-align:center;
   background-color:#fff;
-  border-bottom:1px solid #915957;
+  border-bottom:1px solid #1d301d;
 }
 table.TB_DATA tfoot td {
   padding:5px 0px;
@@ -142,26 +142,24 @@ table.TB_list tfoot td {
 }
 
 table.TB_Bomlist {
-  width: 300px;
+  width: 600px;
+  border:1px solid #1d301d
 }
 table.TB_Bomlist caption {
   padding:10px;
   text-align:center;
-  font-size:24px;
-  background-color:#f2f2f2;
+  font-size:16px;
 }
 table.TB_Bomlist thead th {
   padding:5px 0px;
-  color:#000;
+  color:#001433;
   font-size:16px;
   text-align:center;
-  background-color:#fff;
 }
 table.TB_Bomlist tbody td {
-  padding:5px 10px;
-  color:#0000ff;
+  padding:5px 5px;
+  color:#003380;
   text-align:center;
-  background-color:#f2f2f2;
   border-bottom:1px solid #000;
 }
 table.TB_Bomlist tfoot td {
@@ -192,14 +190,78 @@ table.TB_TB_calendar tfoot td {
   padding:5px 0px;
   text-align:center;
 }
+
+table.TB_lunch_l {
+  width:100%;
+  border-collapse:collapse;
+}
+table.TB_lunch_l caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+  background-color:#f3f6f9;
+}
+table.TB_lunch_l thead th {
+  padding:5px 0px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  background-color:#568f56;
+}
+table.TB_lunch_l tbody td {
+  padding:5px 0px;
+  color:#555;
+  text-align:center;
+  background-color:#fff;
+  border-bottom:1px solid #915957;
+}
+table.TB_lunch_l tbody td.HL {
+  background-color:#dfecdf;
+}
+
+
+table.TB_lunch_l tfoot td {
+  padding:5px 0px;
+  text-align:center;
+  background-color:#d6d6a5;
+}
+table.TB_lunch_add {
+  width:100%;
+  border-collapse:collapse;
+}
+table.TB_lunch_add caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+}
+table.TB_lunch_add thead th {
+  padding:5px 0px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  background-color:#803300;
+  border:1px solid #803300;
+}
+table.TB_lunch_add tbody td {
+  padding:5px 5px;
+  color:#555;
+  text-align:center;
+  background-color:#ffc299;
+  border:1px solid #803300;
+}
+table.TB_lunch_add tfoot td {
+  padding:5px 0px;
+  text-align:center;
+  background-color:#d6d6a5;
+}
 .dropdown-item {
   padding:1px 5px;
 }
 .row {
-    text-align: center;
+  text-align: center;
 }
 .col-lg-12 {
-    display:block;
+  display:block;
 }
 
 .box {

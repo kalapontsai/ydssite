@@ -24,9 +24,10 @@
                     <thead>
                         <tr>
                             <th>類別</th>
-                            <th>規格-品名-料號</th>
+                            <th>規格-品名-料號&nbsp;&nbsp;<a href="{% static 'uploads/TIPTOP-ALL.csv' %}" download>excel檔下載</a></th>
                             <th><div class="btn-group" role="group" aria-label="Basic example"><button type="button" class="btn btn-default" onclick='select_click()'>加入</button><button type="button" class="btn btn-default" onclick='del_click()'>清除</button><button class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="#tbody">複製到剪貼簿</button><button type="button" class="btn btn-default" onclick='exportExcel()'>EXCEL</button></div>
                             </th>
+                            <th>零件位置</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,9 +37,12 @@
                                 <input type="text" id="txt_cp" list="cp_spec" size = "100" /> 
                                 <datalist id="cp_spec"> 
                                 {% for i in cp %}
-                                    <option value="{{ i.content }}" /> 
+                                    <option value="{{ i.content }}"> 
                                 {% endfor %}
                                 </datalist>
+                            </td>
+                            <td>
+                                <input type="text" id="txt_cp_type" size = "4">
                             </td>
                         </tr>
                         <tr>
@@ -51,6 +55,9 @@
                                 {% endfor %}
                                 </datalist>
                             </td>
+                            <td>
+                                <input type="text" id="txt_rs_type" size = "4">
+                            </td>
                         </tr>
                         <tr>
                             <td>CO</td>
@@ -61,6 +68,9 @@
                                     <option value="{{ i.content }}" /> 
                                 {% endfor %}
                                 </datalist>
+                            </td>
+                            <td>
+                                <input type="text" id="txt_co_type" size = "4">
                             </td>
                         </tr>
                         <tr>
@@ -73,6 +83,9 @@
                                 {% endfor %}
                                 </datalist>
                             </td>
+                            <td>
+                                <input type="text" id="txt_bo_type" size = "4">
+                            </td>
                         </tr>
                         <tr>
                             <td>MS</td>
@@ -83,6 +96,9 @@
                                     <option value="{{ i.content }}" /> 
                                 {% endfor %}
                                 </datalist>
+                            </td>
+                            <td>
+                                <input type="text" id="txt_ms_type" size = "4">
                             </td>
                         </tr>
                         <tr>
@@ -95,6 +111,9 @@
                                 {% endfor %}
                                 </datalist>
                             </td>
+                            <td>
+                                <input type="text" id="txt_xf_type" size = "4">
+                            </td>
                         </tr>
                         <tr>
                             <td>DI</td>
@@ -105,6 +124,9 @@
                                     <option value="{{ i.content }}" /> 
                                 {% endfor %}
                                 </datalist>
+                            </td>
+                            <td>
+                                <input type="text" id="txt_di_type" size = "4">
                             </td>
                         </tr>
                         <tr>
@@ -117,6 +139,9 @@
                                 {% endfor %}
                                 </datalist>
                             </td>
+                            <td>
+                                <input type="text" id="txt_ic_type" size = "4">
+                            </td>
                         </tr>
                         <tr>
                             <td>PC</td>
@@ -127,6 +152,9 @@
                                     <option value="{{ i.content }}" /> 
                                 {% endfor %}
                                 </datalist>
+                            </td>
+                            <td>
+                                <input type="text" id="txt_pc_type" size = "4">
                             </td>
                         </tr>
                         <tr>
@@ -139,6 +167,9 @@
                                 {% endfor %}
                                 </datalist>
                             </td>
+                            <td>
+                                <input type="text" id="txt_ls_type" size = "4">
+                            </td>
                         </tr>
                         <tr>
                             <td>TR</td>
@@ -150,6 +181,9 @@
                                 {% endfor %}
                                 </datalist>
                             </td>
+                            <td>
+                                <input type="text" id="txt_tr_type" size = "4">
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -160,12 +194,12 @@
                 <div id="div_excel"> 
                 <table class="TB_DATA" id="table1">
                 <caption>編輯清單</caption>
-                <thead>
                 <tbody id="tbody">
                     <tr>
                         <td>料號</td>
                         <td>品名</td>
                         <td>規格</td>
+                        <td>零件位置</td>
                     </tr>
                 </tbody>
                 </table>

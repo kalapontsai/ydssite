@@ -141,3 +141,44 @@ STATICFILES_DIRS = (
     ('uploads',os.path.join(STATIC_ROOT,'uploads').replace('\\','/') ),
     ('fonts',os.path.join(STATIC_ROOT,'fonts').replace('\\','/') ),
 )
+
+#formatters: 指定输出的格式，被handler使用。
+#handlers： 指定输出到控制台还是文件中，以及输出的方式。被logger引用。
+#loggers： 指定django中的每个模块使用哪个handlers。以及日志输出的级别。
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'simple': {
+            'format': '%(name)-12s:%(levelname)-8s %(message)s',
+            },
+        },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'yds': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'yds.log',
+            'formatter': 'simple',
+            'maxBytes': 1024 * 1024 * 100,  # 100 mb
+        },
+    },
+    'loggers': {
+        'rd': {
+            'handlers': ['yds','console'],
+            'level': 'DEBUG',
+        },
+        'hr': {
+            'handlers': ['yds','console'],
+            'level': 'DEBUG',
+        },
+        'ate': {
+            'handlers': ['yds','console'],
+            'level': 'DEBUG',
+        },
+    }
+}
