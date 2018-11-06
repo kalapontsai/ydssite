@@ -7,51 +7,16 @@ from django.contrib import auth
 from django.contrib.admin.widgets import AdminDateWidget
 import csv
 import os,sys,time
-from django.conf import settings
+#from django.conf import settings
 from datetime import datetime
 from .models import lunch
 import pyodbc
-from ydssite import ateconfig_default
+from ydssite import yds_db_config_default as yds
 import logging
 
-def cal(request):
-	if request.POST:
-		badge = str(request.POST['badge'])
-		yourdate = str(request.POST['date1'])
-		issuer = str(request.POST['issuer'])
-		return render(request, 'cal1.html', {'issuer':issuer, 'yourdate': yourdate, 'badge':badge})
-	else:
-		return render(request, 'cal1.html')
-	
-	#return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
-	return render(request, 'cal1.html')
-
-def board(request):
-	#uploads = os.path.join(STATIC_ROOT,'uploads').replace('\\','/')
-	filename = 'hr_board.csv'
-	#f = os.path.join(uploads,filename)
-	#csvfile = open(f, newline='')
-	#rows = csv.reader(csvfile)
-
-	# 以迴圈輸出每一列
-	#tmp = []
-	#for row in rows:
-		#tmp.append(row)
-	#csvfile.close()
-
-	#lotname = tmp[4][0][4:]
-	#device = tmp[1][0][41:]
-
-	return render(request, 'hr_board.html', {'tmp':'111'})
-
 def lunch_l(request):
-	#if not request.user.is_authenticated:
-		#return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
-	ip = request.META['REMOTE_ADDR']
-	logger = logging.getLogger(__name__)
-	myDate = datetime.now()
-	log_date = str(myDate.strftime("%Y/%m/%d %H:%M:%S"))
-	logger.info('%s visit %s at %s' % (ip,request.path,log_date))
+	if not request.user.is_authenticated:
+		return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
 	if request.user.has_perm('hr.add_lunch'):
 		perms_add = True
 	else:
@@ -59,7 +24,7 @@ def lunch_l(request):
 
 	sql = ""
 	if 'issue_date' in request.POST:
-		configs = ateconfig_default.configs
+		configs = yds.mssql_db
 		driver = configs['db']['driver']
 		host = configs['db']['host']
 		user = configs['db']['user']

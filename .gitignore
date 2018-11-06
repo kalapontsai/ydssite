@@ -9,8 +9,10 @@ ydssite/static/admin/
 ydssite/static/images/
 ydssite/static/js/
 ydssite/static/uploads
+ydssite/yds_db_config_default.py
+ydssite/settings.py
 env.bat
 ate/migrations/
 rd/migrations/
-migrations
 *.log
+*.txt

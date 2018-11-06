@@ -16,7 +16,7 @@ div.center {
 {% endblock %}
 {% block js %}
 <script type="text/javascript" src="{% static 'js/clipboard.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bom2.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bom1.js' %}"></script>
 {% endblock %}
 {% block content %}
  <script>
@@ -52,22 +52,25 @@ div.center {
                 <tr>
                     <td colspan="2">
                         <input type="text" id="txt_comp" list="spec_0" size = "80"> 
-                        <datalist id="spec_0"> 
+                        <datalist id="spec_0">
+                        {% if comp_list %} 
                         {% for i in comp_list %}
                             <option value="{{ i.content }}"> 
                         {% endfor %}
+                        {% else %}
+                            <option value="請先載入編輯清單">
+                        {% endif %}
                         </datalist>
                     </td>
                 </tr>
                 <tr>
-                    <td>品名-規格-料號&nbsp;&nbsp;<a href="{% static 'uploads/TIPTOP-ALL.csv' %}" download>excel檔下載</a></td>
+                    <td>品名-規格-料號-庫存&nbsp;&nbsp;<a href="{% static 'uploads/TIPTOP-ALL.csv' %}" download>excel檔下載</a></td>
                     <td><div class="btn-group" role="group" aria-label="Basic example"><button type="button" class="btn btn-default" onclick='del_click()'>清除</button><button class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="#table1">複製到剪貼簿</button><button type="button" class="btn btn-default" onclick='exportExcel()'>EXCEL</button></div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
     <div id="div_excel"> 
         <table class="TB_DATA" id="table1">
             <caption>編輯清單</caption>
@@ -77,6 +80,7 @@ div.center {
                     <th>品名</th>
                     <th>規格</th>
                     <th>料號</th>
+                    <th>庫存</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
@@ -86,6 +90,7 @@ div.center {
                     <td>{{i.pos}}</td>
                     <td>na</td>
                     <td>{{i.spec}}</td>
+                    <td>na</td>
                     <td>na</td>
                     <td><button type="summit" id="sum" class="btn btn-primary"><span onclick="copy_click('{{i.idx}}')" class='glyphicon glyphicon-plus'></span></button></td>
                 </tr>

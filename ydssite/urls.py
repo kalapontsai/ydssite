@@ -38,4 +38,5 @@ urlpatterns = [
     path('hr/lunchlist/', hr_views.lunch_l),
     path('rd/bom/', rd_views.bom),
     path('rd/bom1/', rd_views.bom1),
+    path('rd/StockQuery/', rd_views.stock_query),
 ]

@@ -14,11 +14,6 @@ def index(request):
 	return render(request, 'ateindex.html')
 
 def test_item_list(request):
-	ip = request.META['REMOTE_ADDR']
-	logger = logging.getLogger(__name__)
-	myDate = datetime.now()
-	log_date = str(myDate.strftime("%Y/%m/%d %H:%M:%S"))
-	logger.info('%s visit %s at %s' % (ip,request.path,log_date))
 	#if not request.user.is_authenticated:
 		#return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
 	#if not request.user.has_perm('ate.view_testdata'):
@@ -28,11 +23,6 @@ def test_item_list(request):
 	return render(request, 'ate_test_item_list.html', {'raw': t_item})
 
 def device_yield(request):
-	ip = request.META['REMOTE_ADDR']
-	logger = logging.getLogger(__name__)
-	myDate = datetime.now()
-	log_date = str(myDate.strftime("%Y/%m/%d %H:%M:%S"))
-	logger.info('%s visit %s at %s' % (ip,request.path,log_date))
 	#if not request.user.is_authenticated:
 		#return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
 	#if not request.user.has_perm('ate.view_testdata'):
@@ -69,11 +59,6 @@ def device_yield(request):
 	return render(request, 'device_yield.html', {'devices': devices,'device': device, 'arr':arr})
 
 def spcc_xr(request):
-	ip = request.META['REMOTE_ADDR']
-	logger = logging.getLogger(__name__)
-	myDate = datetime.now()
-	log_date = str(myDate.strftime("%Y/%m/%d %H:%M:%S"))
-	logger.info('%s visit %s at %s' % (ip,request.path,log_date))
 	#if not request.user.is_authenticated:
 		#return HttpResponseRedirect('/accounts/login/?next={0}'.format(request.path))
 	#if not request.user.has_perm('ate.view_testdata'):

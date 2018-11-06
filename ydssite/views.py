@@ -5,6 +5,7 @@ from django import template
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 from django.contrib.auth.models import User,Group
+#from django.core.mail import EmailMessage
 
 def index(request):
     #列出某group中有哪些人
@@ -42,6 +43,9 @@ def logout(request):
     return HttpResponseRedirect('/')
 
 def ajax_test(request):
+    #email = EmailMessage('Hello', 'Body goes here.', 'from@example', ['to@example.com', 'to2@example.com'], ['bcc@example.com'])
+    #email = EmailMessage('Hello', 'Body goes here.', 'Test', ['ben_tsai@yds.com.tw'], )
+    #email.send()
     return render(request, 'ajax_test.html')
 
 @csrf_exempt
