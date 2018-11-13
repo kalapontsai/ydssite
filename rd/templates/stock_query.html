@@ -2,54 +2,71 @@
 {% load static %}
 {% block title %}庫存搜尋{% endblock %}
 {% block content %}
-<h1 class="center">庫存搜尋</h1>
-  <div class="container">
-    <div class="row">
-        <div class='col-lg-12'>
-            <div class="center">
-            <table class="TB_Bomlist">
-                <caption>限定TipTop料號,可用萬用字元 '<font color='red'>%</font>' '<font color='red'>_</font>' 進行模糊搜尋</caption>
-                <thead>
-                  <tr>
-                    <th>料號</th>
-                    <th>&nbsp;&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <form name="bom_serach" action="" method="post">
-                  {% csrf_token %}
-                  <tr>
-                    <td><input type="text" name="pn" size="16" required></td>                    
-                    <td><button type="summit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</button></td>
-                  </tr>
-                  </form>
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
-    <hr>
-  {% if result %}
-    <div class="row">
-        <div class='col-lg-12'>
-            <table class="TB_DATA">
-                <thead>
-                  <tr>
-                    <th>料號</th>
-                    <th>庫存數量</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for i in result %}
-                  <tr>
-                    <td>{{ i.pn }}</td>                    
-                    <td>{{ i.qty }}</td>
-                  </tr>
+<div class="container">
+  <div class="row">
+      <div class='col-lg-12'>
+          <div class="center">
+          <h1 class="center">物料搜尋</h1>
+          <table class="TB_Bomlist">
+              <caption> 至少一個欄位需填入搜尋字串,品名與規格的大小寫需注意</caption>
+              <thead>
+                <tr>
+                  <th>料號</th>
+                  <th>品名</th>
+                  <th>規格</th>
+                  <th>FOX料號</th>
+                  <th>庫存數</th>
+                  <th>&nbsp;&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <form name="stock_serach" action="" method="post">
+                {% csrf_token %}
+                <tr>
+                  {% for i in qry_txt %}
+                  <td><input type="text" name="{% cycle 'qry_bom' 'qry_pn' 'qry_spec' 'qry_fox' 'qry_stock' %}" size="16" value="{{ i }}"></td>
                   {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    {% endif %}
+                  <td><button type="summit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</button></td>
+                </tr>
+                </form>
+              </tbody>
+          </table>
+          </div>
+      </div>
   </div>
+  <hr>
+{% if not result_stock %}
+<h4>範例 : 料號 : 10CP / 規格: 0805</h4>
+<h4>若要列出有庫存的料號,庫存數請輸入數字(預設為0)</h4>
+{% endif %}
+{% if result_stock %}
+  <div class="row">
+      <div class='col-lg-12'>
+          <table class="TB_DATA">
+            <caption>查到筆數:{{ result_stock|length }}</caption>
+              <thead>
+                <tr>
+                  <th>料號</th>
+                  <th>品名</th>
+                  <th>規格</th>
+                  <th>舊料號</th>
+                  <th>庫存數量</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in result_stock %}
+                <tr>
+                  <td>{{ i.bom }}</td>                    
+                  <td>{{ i.pn }}</td>
+                  <td>{{ i.spec }}</td>
+                  <td>{{ i.fox }}</td>
+                  <td>{{ i.stock }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+  {% endif %}
+</div>
 {% endblock content %}

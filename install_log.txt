@@ -1,4 +1,4 @@
--- 建立vitual env
+﻿-- 建立vitual env
 pip install django
 pip install win32com
 pip install django-pyodbc-azure
@@ -55,6 +55,29 @@ STATICFILES_DIRS = (
     ('images',os.path.join(STATIC_ROOT,'images').replace('\\','/') ),
     ('uploads',os.path.join(STATIC_ROOT,'uploads').replace('\\','/') ),
 )
+
+-- create mssql and oracle database config
+/ydssite/yds_db_config_default.py
+mssql_db = {
+    'db': {
+        'driver': '{ODBC Driver 17 for SQL Server}',
+        'host': '192.168.1.4',
+        'user': 'sa',
+        'password': 'yds6f',
+        'database': 'ate'
+    },
+}
+
+oracle_db = {
+    'db': {
+        'user': '80166',
+        'pwd': '166@oracle',
+        'host': '192.168.1.25/topprod',
+    },
+}
+
+
+
 
 -- create statics directory
 ├─static
@@ -126,3 +149,26 @@ python manage.py inspectdb [table1][table2] > app/models.py
     class Meta:
         managed = False # 如果不讓migratation進行管理的話,則為False
         db_table = 'LotTitle' #程式內使用的table name
+
+-- Python 連接 Oracle的步驟
+
+MIS提供資訊:
+(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.1.25)(PORT = 1521))(CONNECT_DATA = (SERVICE_NAME = topprod)))
+
+select img01,sum(img10) from yuandean1.img_file where img23='Y' and img10<>0 group by img01 order by 1;
+
+至Oracle 下載 Instant Client
+https://www.oracle.com/technetwork/database/database-technologies/instant-client/overview/index.html
+instantclient-basic-windows.x64-18.3.0.0.0dbru.zip
+
+壓縮檔解出目錄, 放置在特定位置, 並加入os path (使用者變數)
+
+python 虛擬環境 安裝cx_Oracle
+pip install cx_Oracle
+
+執行碼如下, 適用python 執行檔, 以及Django view
+
+connection = cx_Oracle.connect("80166", "166@oracle", "192.168.1.25/topprod")
+cursor = connection.cursor()
+sql = "select img01,sum(img10) from yuandean1.img_file where img23='Y' and img10<>0 and img01='10BS060000-0002' group by img01 order by 1"
+cursor.execute(sql)

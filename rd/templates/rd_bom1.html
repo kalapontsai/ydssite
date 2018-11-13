@@ -4,7 +4,7 @@
 {% block css %}
 <style>
 .bottom {
-  position: fixed; left: 25%; bottom: 10px;
+  position: fixed; left: 15%; bottom: 5px;
   background-color:#f2f2f2;
 }
 div.center {
@@ -50,22 +50,18 @@ div.center {
         <table class="TB_Bomlist">
             <tbody>
                 <tr>
+                    <td><select id= "txt_type" onchange='comp_select()'>
+                                {% for i in comp_type %}<option value= "{{ i }}">{{ i }}</option>{% endfor %}</select>
+                    </td>
                     <td colspan="2">
-                        <input type="text" id="txt_comp" list="spec_0" size = "80"> 
-                        <datalist id="spec_0">
-                        {% if comp_list %} 
-                        {% for i in comp_list %}
-                            <option value="{{ i.content }}"> 
-                        {% endfor %}
-                        {% else %}
-                            <option value="請先載入編輯清單">
-                        {% endif %}
+                        <input type="text" id="txt_content" list="content" size = "80" /> 
+                        <datalist id="content"> 
+                             <option value="請選擇類別"> 
                         </datalist>
                     </td>
                 </tr>
                 <tr>
-                    <td>品名-規格-料號-庫存&nbsp;&nbsp;<a href="{% static 'uploads/TIPTOP-ALL.csv' %}" download>excel檔下載</a></td>
-                    <td><div class="btn-group" role="group" aria-label="Basic example"><button type="button" class="btn btn-default" onclick='del_click()'>清除</button><button class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="#table1">複製到剪貼簿</button><button type="button" class="btn btn-default" onclick='exportExcel()'>EXCEL</button></div>
+                    <td colspan="2"><div class="btn-group" role="group" aria-label="Basic example"><button type="button" class="btn btn-default" onclick='del_click()'>清除</button><button class="btn btn-default" data-clipboard-action="copy" data-clipboard-target="#table1">複製到剪貼簿</button><button type="button" class="btn btn-default" onclick='exportExcel()'>EXCEL</button></div>
                     </td>
                 </tr>
             </tbody>

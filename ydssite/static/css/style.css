@@ -142,6 +142,7 @@ table.TB_list tfoot td {
 }
 
 table.TB_Bomlist {
+  padding:10px;
   width: 600px;
   border:1px solid #1d301d
 }

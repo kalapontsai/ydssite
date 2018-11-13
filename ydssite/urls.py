@@ -29,7 +29,6 @@ urlpatterns = [
     path('accounts/login/', index_views.login),
     path('accounts/logout/', index_views.logout),
     path('unauthorized/', index_views.unauthorized),
-    path('ate/', ate_views.index, name='ate'),
     path('ate/test_item_list/', ate_views.test_item_list),
     path('ate/device_yield/', ate_views.device_yield),
     path('ate/spcc_xr/', ate_views.spcc_xr),
@@ -37,6 +36,7 @@ urlpatterns = [
     path('ajax/add/', index_views.ajax_test_add),
     path('hr/lunchlist/', hr_views.lunch_l),
     path('rd/bom/', rd_views.bom),
+    path('rd/bom_ajax/', rd_views.bom_ajax),
     path('rd/bom1/', rd_views.bom1),
     path('rd/StockQuery/', rd_views.stock_query),
 ]
