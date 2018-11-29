@@ -33,12 +33,13 @@ div.center {
          <table class="TB_Bomlist" id="import_path">
             <tbody>
                 <tr>
-                    <td colspan="2">PCB清單讀取位置&nbsp;ex:&nbsp;\\192.168.1.9\研發部\rdt\Temp\BOM編輯清單\BOM_DEMO.csv</td>
+                    <td colspan="2">檔案位置限定&nbsp;&nbsp;\\192.168.1.9\研發部\rdt\Temp\BOM編輯清單\<font color='red'>你編輯的清單</font>.csv</td>
                 </tr>
                 <tr>
                 <form name="readcsv" action="/rd/bom1/" method="post">
                 {% csrf_token %}
-                    <td><input type="text" id="txt_path" name="txt_path" size="80" value="{{path}}" placeholder="請輸入完整檔案路徑"></td>
+                    <td><input type="file" id="f_name" name="f_name" style="display: none" onchange="showpath();">
+                        <input type="text" id="txt_path" name="txt_path" size="80" value="{{path}}" placeholder="請輸入完整檔案路徑"><input type="Button" value="選取檔案" onclick="f_name.click()"></td>
                     <td><button type="summit" id="sum" class="btn btn-primary"><span class="glyphicon glyphicon-open"></span>&nbsp;Open</button></td>
                 </form>
                 </tr>

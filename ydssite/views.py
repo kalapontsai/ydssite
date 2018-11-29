@@ -5,7 +5,23 @@ from django import template
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 from django.contrib.auth.models import User,Group
+from datetime import datetime
+import json
 #from django.core.mail import EmailMessage
+
+def visit_account(str = 'na'):
+    with open('count.json') as f:
+        data = json.load(f)
+    
+    if (str == 'na'):
+        data['visit'] += 1
+    else :
+        data['page'][str] += 1
+
+    with open('count.json','w') as f:
+        json.dump(data, f)
+
+    return
 
 def index(request):
     #列出某group中有哪些人
@@ -13,7 +29,13 @@ def index(request):
     #列出使用者的群組名單
     #qry = Group.objects.filter(user = request.user)
     #<QuerySet [<Group: RD1>, <Group: HR>, <Group: users>]>
-    a = ""
+    ip = request.META['REMOTE_ADDR']
+    if 'visited' not in request.session:
+        visit_account()
+        request.session['visited'] = '1'
+        request.session.set_expiry(3600)
+    #request.session.session_key
+    a = request.session.get_expiry_age()
     return render(request, 'index.html',{'ss':a})
 
 def unauthorized(request):

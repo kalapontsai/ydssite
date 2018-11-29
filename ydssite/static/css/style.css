@@ -160,6 +160,7 @@ table.TB_Bomlist thead th {
 table.TB_Bomlist tbody td {
   padding:5px 5px;
   color:#003380;
+  font-size:16px;
   text-align:center;
 }
 table.TB_Bomlist tfoot td {
