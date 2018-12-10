@@ -33,7 +33,7 @@ def index(request):
     if 'visited' not in request.session:
         visit_account()
         request.session['visited'] = '1'
-        request.session.set_expiry(3600)
+    request.session.set_expiry(3600)
     #request.session.session_key
     a = request.session.get_expiry_age()
     return render(request, 'index.html',{'ss':a})

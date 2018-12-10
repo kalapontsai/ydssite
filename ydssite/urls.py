@@ -35,6 +35,7 @@ urlpatterns = [
     path('ajax/', index_views.ajax_test),
     path('ajax/add/', index_views.ajax_test_add),
     path('hr/lunchlist/', hr_views.lunch_l),
+    path('hr/meetingroom/', hr_views.hr_meeting_room),
     path('rd/bom/', rd_views.bom),
     path('rd/bom_ajax/', rd_views.bom_ajax),
     path('rd/bom1/', rd_views.bom1),

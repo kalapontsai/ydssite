@@ -31,7 +31,7 @@ def stock_query(request):
 	if 'visited' not in request.session:
 		visit_account()
 		request.session['visited'] = '1'
-		request.session.set_expiry(3600)
+	request.session.set_expiry(3600)
 	ip = request.META['REMOTE_ADDR']
 	logger = logging.getLogger(__name__)
 	#模糊搜尋
@@ -124,7 +124,7 @@ def bom(request):
 	if 'visited' not in request.session:
 		visit_account()
 		request.session['visited'] = '1'
-		request.session.set_expiry(3600)
+	request.session.set_expiry(3600)
 	ip = request.META['REMOTE_ADDR']
 	logger = logging.getLogger(__name__)
 	logger.info('%s:BOM EDIT A' % (ip))
@@ -140,7 +140,7 @@ def bom1(request):
 	if 'visited' not in request.session:
 		visit_account()
 		request.session['visited'] = '1'
-		request.session.set_expiry(3600)
+	request.session.set_expiry(3600)
 	ip = request.META['REMOTE_ADDR']
 	logger = logging.getLogger(__name__)
 	logger.info('%s:BOM EDIT B' % (ip))

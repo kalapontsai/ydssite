@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block title %}管理部 - 會議室預約{% endblock %}
+{% load static %}
+{% block js %}
+  <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+  <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({format: 'L'});
+        $('#datetimepicker2').datetimepicker({format: 'LT'});
+        $('#datetimepicker3').datetimepicker({format: 'LT'});
+    });
+  </script>
+{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}">
+{% endblock %}
+{% block content %}
+{{ debug }}
+<h2 class='center'>會議室預約系統</h3>
+<div class="container">
+  {% if perms_add %}
+  <div class="row">
+    <div class='col-lg-12'>
+      <div align='center'>
+        <table class="TB_meeting_add">
+          <caption>預約</caption>
+<form name="metting_add" action="" method="post">
+{% csrf_token %}  
+          <body>
+            <tr>
+              <td class='topic' width="200">會議室</td>
+              <td class='topic' width="150">預約日期</td>
+              <td class='topic' width="150">開始時間</td>
+              <td class='topic' width="150">結束時間</td>
+              <td class='topic'>會議主題</td>
+            </tr>
+            <tr>
+              <td><select class="room_select" name="int_room_number" required="required">
+                  <option value="1" selected="selected">樣品室</option>
+                  <option value="2">大會議室</option>
+                  <option value="3">小會議室</option>
+                  </select>
+              </td>
+              <td><div class='input-group date' id='datetimepicker1'><input type='text' name='date_reserve' class="form-control" size="6" value="{{tday}}" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>
+              <td><div class='input-group date' id='datetimepicker2'><input type='text' name='time_start' class="form-control" size="6" value="{{ttime}}" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>
+              <td><div class='input-group date' id='datetimepicker3'><input type='text' name='time_end' class="form-control" size="6" value="{{ttime}}" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>
+              <td><input type="text" name="char_topic" size="50" required></td>
+            </tr>
+            <tr>
+              <td class='topic'>申請部門</td>
+              <td class='topic'>申請人</td>
+              <td class='topic' colspan='3'>備註</td>
+            </tr>
+            <tr>
+              <td><input type="hidden" name="txt_issuer_dep" value='{{ user.groups.all.0 }}' required>{{ user.groups.all.0 }}</td>
+              <td><input type="hidden" name="txt_issuer_badge" value='{{request.user}}' required>{{request.user}}</td>
+              <td colspan='3'><input type="text" name="note" size="60">&nbsp;&nbsp;<button type="summit" class="btn btn-primary"><span class="glyphicon glyphicon-upload"></span>&nbsp;登記</button></td>
+            </tr>
+          </tbody>
+          </form>
+        </table>
+      </div>
+    </div>
+  </div>
+</br></br>
+  {% endif %}
+  <div class="row">
+    <div class='col-lg-12'>
+      <table class='TB_meeting_show'>
+<form name="metting_show" action="" method="get">
+        <tbody>
+          <tr>
+            <td>
+              <select class="room_select" name="show_room_number" required="required">
+                {% if '1' in show_room_number %}
+                <option value="1" selected="selected">樣品室</option>
+                {% else %}
+                <option value="1">樣品室</option>
+                {% endif %}
+                {% if '2' in show_room_number %}
+                <option value="2" selected="selected">大會議室</option>
+                {% else %}
+                <option value="2">大會議室</option>
+                {% endif %}
+                {% if '3' in show_room_number %}
+                <option value="3" selected="selected">小會議室</option>
+                {% else %}
+                <option value="3">小會議室</option>
+                {% endif %}
+                </select>
+            </td>
+            <td>
+              <button type="summit" class="btn btn-primary"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;切換會議室&nbsp;</button>
+            </td>
+          </tr>
+        </tbody>
+</form>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-lg-12'>
+      <table class="TB_lunch_l">
+        <caption>已預定時間表</caption>
+        <thead>
+          <tr>
+            <th width="80">使用日期</th>
+            <th width="80">開始時間</th>
+            <th width="80">結束時間</th>
+            <th width="250">會議用途</th>
+            <th width="100">部門</th>
+            <th width="100">申請人</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+{% for i in rows %}
+          {% if i.date_reserve|date:"m/d" == tday %}
+          <tr>
+            <td class="HL"><b>{{i.date_reserve|date:"m-d"}}</b></td>
+        		<td class="HL"><b>{{i.time_start|date:'H:i'}}</b></td>
+            <td class="HL"><b>{{i.time_end|date:'H:i'}}</b></td>
+        		<td class="HL"><b>{{i.char_topic}}</b></td>
+            <td class="HL"><b>{{i.txt_issuer_dep}}</b></td>
+            <td class="HL"><b>{{i.txt_issuer_badge}}</b></td>
+            <td class="HL"><b>{{i.note}}</b></td>
+          </tr>
+          {% else %}
+          <tr>
+            <td>{{i.date_reserve|date:'m/d'}}</td>
+            <td>{{i.time_start|date:'H:i'}}</div></td>
+            <td>{{i.time_end|date:'H:i'}}</td>
+            <td>{{i.char_topic}}</td>
+            <td>{{i.txt_issuer_dep}}</td>
+            <td>{{i.txt_issuer_badge}}</td>
+            <td>{{i.note}}</b></td>
+          </tr>
+          {% endif %}
+{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

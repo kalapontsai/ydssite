@@ -26,8 +26,12 @@ h1 span {
 
 h2 {
   font-family: Verdana;
-  font-weight: normal;
+  font-weight: bold;
   color: #556B2F;
+}
+
+h2.center {
+  text-align: center;
 }
 
 h3 {
@@ -217,6 +221,7 @@ table.TB_lunch_l tbody td {
   border-bottom:1px solid #915957;
 }
 table.TB_lunch_l tbody td.HL {
+  font-size:16px;
   background-color:#dfecdf;
 }
 
@@ -255,6 +260,63 @@ table.TB_lunch_add tfoot td {
   text-align:center;
   background-color:#d6d6a5;
 }
+
+table.TB_meeting_show {
+  padding:5px 1px;
+  width:30%;
+  border-collapse:collapse;
+}
+
+table.TB_meeting_show tbody td{
+  padding:5px 1px;
+  font-size:16px;
+  text-align:center;
+  border:0px solid #464620;
+}
+
+table.TB_meeting_add {
+  width:100%;
+  border-collapse:collapse;
+}
+table.TB_meeting_add caption {
+  padding:10px;
+  text-align:center;
+  font-size:24px;
+}
+table.TB_meeting_add thead th {
+  padding:5px 0px;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  background-color:#d6d6a5;
+  border:1px solid #464620;
+}
+table.TB_meeting_add tbody td {
+  padding:5px 5px;
+  color:#555;
+  font-size:16px;
+  text-align:center;
+  background-color:#d6d6a5;
+  border:1px solid #464620;
+}
+
+table.TB_meeting_add tbody td.topic{
+  padding:5px 5px;
+  color:#fff;
+  font-size:18px;
+  text-align:center;
+  background-color:#afaf50;
+  border:1px solid #464620;
+}
+
+
+table.TB_meeting_add tfoot td {
+  padding:5px 0px;
+  text-align:center;
+  font-size:16px;
+  background-color:#d6d6a5;
+  border:1px solid #464620;
+}
 .dropdown-item {
   padding:1px 5px;
 }
@@ -279,4 +341,11 @@ table.TB_lunch_add tfoot td {
     .foo{
       display:none;
     }
+}
+
+.room_select{
+    width: 150px;
+    text-align: center;
+    text-align-last: center;
+    /* webkit*/
 }
