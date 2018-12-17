@@ -20,6 +20,9 @@ user = configs['db']['user']
 host = configs['db']['host']
 pwd = configs['db']['pwd']
 
+def samplelot(request):
+	return render(request, 'sample_lot.html')
+
 def end_of_the_world():
 	if (datetime(2019,1,1,0,0,0) - datetime.now()).days < 0 :
 		return True

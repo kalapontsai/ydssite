@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}樣品進度{% endblock %}
+{% block js %}
+  <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+  <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({format: 'L'});
+        $('#datetimepicker2').datetimepicker({format: 'L'});
+        $('#datetimepicker3').datetimepicker({format: 'LT'});
+    });
+  </script>
+{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class='col-lg-12'>
+          <div class="center">
+          <h3>新增樣品訂單</h3>
+          <table class="TB_samplelot">
+              <thead>
+                <tr>
+                  <th>製令日期</th>
+                  <th>訂單號碼</th>
+                  <th>機種</th>
+                  <th>數量</th>
+                  <th>預定交期</th>
+                  <th colspan="2">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class='input-group date' id='datetimepicker1'><input type='text' name='sl_add_0' class="form-control" size="7" value="12/12/2018" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>
+                  <td><input type="text" name="sl_add_1" size="10" value="YS00-000000"></td>
+                  <td><input type="text" name="sl_add_2" size="16" value="68DW-XXXXXXX"></td>
+                  <td><input type="text" name="sl_add_3" size="2" value="99"></td>
+                  <td><div class='input-group date' id='datetimepicker2'><input type='text' name='sl_add_4' class="form-control" size="8" value="12/12/2018" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></td>
+                  <td><input type="text" name="sl_add_5" placeholder="紀錄業務單位特殊要求"></td>
+                  <td class="add"><button type="summit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>&nbsp;新增</button></td>
+                </tr>
+              </tbody>
+          </table>
+          <h3>更新進度</h3>
+          <table class="TB_samplelot">
+              <thead>
+                <tr>
+                  <th width='50'>訂單號碼</th>
+                  <th width='50'>下一個製程</th>
+                  <th colspan="2">備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <select class="room_select" required="required">
+                    <option value="YS00-000000" selected="selected">YS00-000000</option>
+                    <option value="YS00-000001">YS00-000001</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="room_select" name="int_room_number" required="required">
+                    <option value="1" selected="selected">PROG3</option>
+                    <option value="2">PROG4</option>
+                    <option value="3">PROG5</option>
+                    </select>
+                  </td>
+                  <td><input type="text" name="note" placeholder="紀錄此製程不正常的情形"></td>
+                  <td><button type="summit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>&nbsp;完成</button></td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+      </div>
+  </div>
+  <hr>
+  <div class="row">
+      <div class='col-lg-12'>
+        <h3>進行中,件數:3</h3>
+        <table class="TB_samplelot">
+          <thead>
+            <tr>
+              <th>接單日期</th><th>訂單號碼</th><th>機種</th><th>數量</th><th>預定交期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2018/12/01</td><td>YS00-000000</td><td>68DW-xxxxxxx</td><td>99</td><td class="timeout">2018/12/10</td>
+            </tr>
+            <tr>
+              <td class="prog"><div id="finish"></div></td>
+              <td class="prog"><div id="grad">==>PROG2</div></td>
+              <td class="prog"><div id="unfinish"></div></td>
+              <td class="prog"><div id="unfinish"></div></td>
+              <td class="prog"><div id="unfinish"></div></td>
+            </tr>
+            <tr>
+              <td>2018/12/12</td><td>YS00-000001</td><td>27DW-xxxxxxx</td><td>99</td><td>2018/12/25</td>
+            </tr>
+            <tr>
+              <td class="prog" colspan="5">
+                <div id="unfinish"><div id="finish" style="width:50%"><p style="color:#fff;position:relative;left:350px;">==>PROG4</p></div></div>
+              </td>
+            </tr>
+            <tr>
+              <td>2018/12/12</td><td>YS00-000003</td><td>27DW-xxxxxxx</td><td>99</td><td>2018/12/25</td>
+            </tr>
+            <tr>
+              <td class="prog" colspan="5"><div  style="background-image: linear-gradient(to right, #999966 50%, #f2f2f2 60%);"><p style="color:#fff;position:relative;left:400px;">==>PROG4</p></div></td>
+            </tr>
+            <tr>
+              <td>2018/12/12</td><td>YS00-000004</td><td>27DW-xxxxxxx</td><td>99</td><td>2018/12/25</td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <div class="progress">
+                  <div class="progress-bar" style="width:60%;">60%</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+  <hr>
+  <div class="row">
+      <div class='col-lg-12'>
+        <h3>工時紀錄,期間:2018/11 ~ 2018/12</h3>
+        <table class="TB_samplelot">
+          <thead>
+            <tr>
+              <th>接單日期</th><th>訂單號碼</th><th>機種</th><th>數量</th><th>預定交期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2018/12/01</td><td>YS00-000000</td><td>68DW-xxxxxxx</td><td>99</td><td class="timeout">2018/12/10</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="TB_samplelot">
+          <thead>
+            <tr>
+              <th>備料</th><th>PR2</th><th>PR3</th><th>PR4</th><th>PR5</th><th>PR6</th><th>PR7</th><th>PR8</th><th>PR9</th><th>PR10</th><th>PR11</th><th>出貨</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'></td><td class='time'></td><td class='time'></td><td class='time'></td><td class='time'></td><td class='time'></td><td class='time'></td><td class='time'></td><td class='time'></td><td class='time'></td>
+            </tr>
+            <tr>
+              <td colspan="12">工期: x Days </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <table class="TB_samplelot">
+          <thead>
+            <tr>
+              <th>接單日期</th><th>訂單號碼</th><th>機種</th><th>數量</th><th>預定交期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2018/12/10</td><td>YS00-000002</td><td>68DW-xxxxxxx</td><td>99</td><td>2018/12/30</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="TB_samplelot">
+          <thead>
+            <tr>
+              <th>備料</th><th>PR2</th><th>PR3</th><th>PR4</th><th>PR5</th><th>PR6</th><th>PR7</th><th>PR8</th><th>PR9</th><th>PR10</th><th>PR11</th><th>出貨</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/10 10:10</td><td class='time'>12/17 10:10</td>
+            </tr>
+            <tr>
+              <td colspan="12">工期: 7 Days </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+{% endblock content %}

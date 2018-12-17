@@ -18,6 +18,8 @@
 {% block content %}
 {{ debug }}
 <h2 class='center'>會議室預約系統</h3>
+{% if request.user.is_anonymous %}<h3 class="center"><a href="/accounts/login/?next=/hr/meetingroom/">我要預約</a></h3>
+{% endif %}
 <div class="container">
   {% if perms_add %}
   <div class="row">

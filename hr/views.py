@@ -13,6 +13,7 @@ from datetime import datetime
 from .models import lunch,meeting_room
 import pyodbc
 from ydssite import yds_db_config_default as yds
+from ydssite.views import visit_account
 import logging
 
 def lunch_l(request):

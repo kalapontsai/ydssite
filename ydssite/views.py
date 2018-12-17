@@ -44,21 +44,18 @@ def unauthorized(request):
 def login(request):
     if request.user.is_authenticated: 
         return HttpResponseRedirect('/')
-
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
     if 'next' in request.GET:
         next = str(request.GET['next'])
     else:
         next = "/"
-    
-    user = auth.authenticate(username=username, password=password)
-
-    if user is not None and user.is_active:
-        auth.login(request, user)
-        return HttpResponseRedirect(next)
-    else:
-        return render(request, 'login.html', {'next': next})
+    if 'username' in request.POST:
+        username = str(request.POST['username'])
+        password = str(request.POST['password'])
+        user = auth.authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            auth.login(request, user)
+            return HttpResponseRedirect(next)
+    return render(request, 'login.html', {'next': next})
 
 def logout(request):
     auth.logout(request)

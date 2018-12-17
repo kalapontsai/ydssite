@@ -40,4 +40,5 @@ urlpatterns = [
     path('rd/bom_ajax/', rd_views.bom_ajax),
     path('rd/bom1/', rd_views.bom1),
     path('rd/StockQuery/', rd_views.stock_query),
+    path('rd/samplelot/', rd_views.samplelot),
 ]
