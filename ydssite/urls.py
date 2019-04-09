@@ -41,4 +41,5 @@ urlpatterns = [
     path('rd/bom1/', rd_views.bom1),
     path('rd/StockQuery/', rd_views.stock_query),
     path('rd/samplelot/', rd_views.samplelot),
+    path('bulletin/',  index_views.bulletin),
 ]

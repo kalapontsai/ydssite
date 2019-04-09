@@ -317,9 +317,9 @@ table.TB_meeting_add tfoot td {
   background-color:#d6d6a5;
   border:1px solid #464620;
 }
-
+/* https://www.w3schools.com/colors/colors_british.asp */
 table.TB_samplelot {
-  width:100%;
+  width:1024px;
   border-collapse:collapse;
 }
 
@@ -333,25 +333,24 @@ table.TB_samplelot caption {
 
 table.TB_samplelot thead th {
   padding:5px 5px;
-  color:#343418;
+  color:#bec0b8;
   font-size:16px;
   text-align:center;
-  background-color:#afaf50;
-  border:2px solid #f2f2f2;
+  background-color:#6b7477;
+  border:2px solid #424c53;
 }
 table.TB_samplelot tbody td {
   padding:5px 5px;
-  color:#343418;
+  color:#424c53;
   font-size:16px;
   text-align:center;
-  background-color:#d7d7a8;
-  border:2px solid #f2f2f2;
+  background-color:#9aaa9f;
+  border:2px solid #424c53;
 }
 
 table.TB_samplelot tbody td:hover {
   font-weight:bold;
-  background-color:#339933;
-
+  color:#424c53;
 }
 
 table.TB_samplelot tbody td.prog {
@@ -359,31 +358,31 @@ table.TB_samplelot tbody td.prog {
   color:#fff;
   font-size:14px;
   text-align:left;
-  border:2px solid #f2f2f2;
+  border:2px solid #424c53;
 }
 table.TB_samplelot tbody td.time {
   padding:5px 2px;
-  color:#343418;
+  color:#424c53;
   font-size:14px;
   text-align:center;
-  border:2px solid #f2f2f2;
+  border:2px solid #424c53;
 }
 table.TB_samplelot tbody td.timeout {
   padding:5px 2px;
   color:#f44336;
   font-size:16px;
   text-align:center;
-  border:2px solid #f2f2f2;
+  border:2px solid #424c53;
 }
 
 #finish {
   height: 20px;
-  background-color:#999966;
+  background-color:#6f7264;
 }
 
 #grad {
   height: 20px;
-  background-image: linear-gradient(to right, #999966 50%, #f2f2f2);
+  background-image: linear-gradient(to right, #6f7264 50%, #f2f2f2);
 }
 
 #unfinish {
@@ -402,10 +401,26 @@ input[type=text] {
  background-color:#f2f2f2;
 }
 
-.progress-bar {
-  text-align: right;
+.progress0 {
+  text-align: left;
   font-size:16px;
-  background-color:#999966;
+  float:left; 
+  height:20px;
+  background-color:#f2f2f2;
+}
+.progress1 {
+  text-align: center;
+  font-size:16px;
+  float:left; 
+  height:20px;
+  background-color:#424c53;
+}
+.progress2 {
+  text-align: center;
+  font-size:16px;
+  float:left; 
+  height:20px;
+  background-color:#bec0b8;
 }
 
 .dropdown-item {
@@ -439,6 +454,12 @@ input[type=text] {
     text-align: center;
     text-align-last: center;
     /* webkit*/
+}
+
+.gantt div{
+-webkit-box-sizing: content-box;
+-moz-box-sizing: content-box;
+box-sizing: content-box;
 }
 
 /* Colors 

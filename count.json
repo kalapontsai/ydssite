@@ -1,1 +1,11 @@
-{"visit": 34, "page": {"bom": 8, "bom1": 10, "stock": 1, "ajax": 2, "hr": 35, "samplelot": 1}}
+{
+    "visit": 45,
+    "page": {
+        "bom": 8,
+        "bom1": 17,
+        "stock": 2,
+        "ajax": 4,
+        "hr": 43,
+        "samplelot": 1
+    }
+}

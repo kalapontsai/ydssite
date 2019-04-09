@@ -7,6 +7,8 @@ from django.contrib import auth
 from django.contrib.auth.models import User,Group
 from datetime import datetime
 import json
+import urllib.request
+from bs4 import BeautifulSoup
 #from django.core.mail import EmailMessage
 
 def visit_account(str = 'na'):
@@ -19,8 +21,7 @@ def visit_account(str = 'na'):
         data['page'][str] += 1
 
     with open('count.json','w') as f:
-        json.dump(data, f)
-
+        json.dump(data, f, indent=4)
     return
 
 def index(request):
@@ -40,6 +41,9 @@ def index(request):
 
 def unauthorized(request):
     return render(request, 'unauthorized.html')
+
+def bulletin(request):
+    return render(request, 'bulletin_mfg.html')
 
 def login(request):
     if request.user.is_authenticated: 

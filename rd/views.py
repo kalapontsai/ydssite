@@ -24,7 +24,7 @@ def samplelot(request):
 	return render(request, 'sample_lot.html')
 
 def end_of_the_world():
-	if (datetime(2019,1,1,0,0,0) - datetime.now()).days < 0 :
+	if (datetime(2019,6,1,0,0,0) - datetime.now()).days < 0 :
 		return True
 
 def stock_query(request):
