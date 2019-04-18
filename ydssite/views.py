@@ -42,9 +42,6 @@ def index(request):
 def unauthorized(request):
     return render(request, 'unauthorized.html')
 
-def bulletin(request):
-    return render(request, 'bulletin_mfg.html')
-
 def login(request):
     if request.user.is_authenticated: 
         return HttpResponseRedirect('/')

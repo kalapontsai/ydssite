@@ -1,11 +1,19 @@
 #git add -f <file> 強制加入忽略的檔案
+#git reset HEAD <file> 取消add檔案
 #$ git clean -fX 清除忽略的檔案
 *sublime*
 __pycache__/
 migrations/
 db.sqlite3
-*.js
+jquery*.js
+bootstrap*.js
+bootstrap*.css
+admin/
+uploads/
+images/
+fonts/
 static/
+statics/
 *config_default.py
 ydssite/settings.py
 env.bat
